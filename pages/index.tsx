@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
 		if (!form.checkValidity()) return;
 
-		window.location.replace(`/preview?ip=${form.elements[0].value}&bedrock=${form.elements[2].checked}`)
+		window.location.replace(`/preview?host=${form.elements[0].value}&bedrock=${form.elements[2].checked}`)
 	};
 
 	return (

@@ -43,8 +43,14 @@ const handler = async(
 	res: NextApiResponse<Data>
 ) => {
     if (!req.query.host) return res.status(422).json({ name: 'UNPROCESSABLE ENTITY', message: 'Invalid query parameter host' });
+
+    if (req.query.host.includes(':')) {
+        req.query.port = (req.query.host as string).split(':')[1];
+        req.query.host = (req.query.host as string).split(':')[0];
+    }
+
     if (!req.query.port) {
-        if (req.query.bedrock) req.query.port = '19132';
+        if (strToBool(req.query.bedrock as string)) req.query.port = '19132';
         else req.query.port = '25565';
     }
 
@@ -54,7 +60,6 @@ const handler = async(
         return res.status(400).json({ name: 'BAD REQUEST', message: status });
     }
 
-    console.log(status)
 	res.status(200).json({
         name: 'OK',
         message: {
