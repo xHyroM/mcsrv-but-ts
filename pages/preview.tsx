@@ -4,6 +4,7 @@ import style from '../styles/Home.module.css';
 import Head from 'next/head';
 import useSWR from 'swr';
 import Search from '../components/search';
+import { Table } from 'react-bootstrap';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -22,6 +23,65 @@ const Preview: NextPage = () => {
 			</Head>
 
 			<Search value={`${host || ''}`} />
+
+            <Table borderless>
+                <tbody>
+                    <tr>
+                        <td>
+                            <b>
+                                IP
+                            </b>
+                        </td>
+
+                        <td>{ data ? `${data.message.ip}` : 'Loading' }</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>
+                                Edition
+                            </b>
+                        </td>
+
+                        <td>{ data?.message?.edition ? `${data.message.edition.chatAt(0) + data.message.edition.slice(1).toLowerCase()}` : 'Loading' }</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>
+                                Players
+                            </b>
+                        </td>
+
+                        <td>{ data ? `${data.message.playersOnline}/${data.message.playersMax}` : 'Loading' }</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>
+                                Version Name
+                            </b>
+                        </td>
+
+                        <td>{ data ? `${data.message.versionName}` : 'Loading' }</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>
+                                Version Protocol
+                            </b>
+                        </td>
+
+                        <td>{ data ? `${data.message.versionProtocol}` : 'Loading' }</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>
+                                Motd
+                            </b>
+                        </td>
+
+                        <td>{ data ? `${data.message.motd.html}` : 'Loading' }</td>
+                    </tr>
+                </tbody>
+            </Table>
 
             {data ? data.message.ip : 'Loading...'}
 		</div>
