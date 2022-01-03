@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { InputGroup, Form, Button } from 'react-bootstrap';
+import { strToBool } from '../utils/stringToBool';
 
-const Search = ({ value }: any) => {
+const Search = ({ value, bedrock }: any) => {
 	const [validated, setValidated] = useState(false);
 
 	const handleSubmit = (event: any) => {
@@ -28,6 +29,7 @@ const Search = ({ value }: any) => {
                 </InputGroup>
                 <Form.Check
                     label="Bedrock Server"
+                    defaultChecked={strToBool(bedrock)}
                 />
             </Form>
         </main>
