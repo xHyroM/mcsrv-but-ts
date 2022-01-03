@@ -13,27 +13,27 @@ const Search = ({ value, bedrock }: any) => {
 
 		if (!form.checkValidity()) return;
 
-		window.location.replace(`/preview?host=${form.elements[0].value}&bedrock=${form.elements[2].checked}`)
+		window.location.replace(`/preview?host=${form.elements[0].value}&bedrock=${form.elements[2].checked}`);
 	};
 
-    return (
-        <main>
-            <h1 className='title'>
+	return (
+		<main>
+			<h1 className='title'>
                 Minecraft Server Status
-            </h1>
+			</h1>
 
-            <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                <InputGroup>
-                    <Form.Control type="text" placeholder='Server IP' defaultValue={value ? value : ''} required />
-                    <Button type="submit">Search</Button>
-                </InputGroup>
-                <Form.Check
-                    label="Bedrock Server"
-                    defaultChecked={strToBool(bedrock)}
-                />
-            </Form>
-        </main>
-    )
-}
+			<Form noValidate validated={validated} onSubmit={handleSubmit}>
+				<InputGroup>
+					<Form.Control type="text" placeholder='Server IP' defaultValue={value ? value : ''} required />
+					<Button type="submit">Search</Button>
+				</InputGroup>
+				<Form.Check
+					label="Bedrock Server"
+					defaultChecked={strToBool(bedrock)}
+				/>
+			</Form>
+		</main>
+	);
+};
 
 export default Search;
