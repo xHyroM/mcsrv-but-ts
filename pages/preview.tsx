@@ -26,7 +26,7 @@ const Preview: NextPage = () => {
 
 			<Search value={`${host || ''}`} bedrock={`${strToBool(bedrock as string)}`} />
 
-			{ data && data.name !== 'BAD REQUEST' ?
+			{ (!data || data.name !== 'BAD REQUEST') ?
 				<Table responsive>
 					<tbody>
 						<tr>
