@@ -1,23 +1,9 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import style from '../styles/Home.module.css';
-import { InputGroup, Form, Button } from 'react-bootstrap';
-import { useState } from 'react';
+import Search from '../components/search';
 
 const Home: NextPage = () => {
-	const [validated, setValidated] = useState(false);
-
-	const handleSubmit = (event: any) => {
-		event.preventDefault();
-		setValidated(true);
-
-		const form = event.currentTarget;
-
-		if (!form.checkValidity()) return;
-
-		window.location.replace(`/preview?host=${form.elements[0].value}&bedrock=${form.elements[2].checked}`)
-	};
-
 	return (
 		<div className={`container ${style.container}`}> 
 			<Head>
@@ -26,21 +12,7 @@ const Home: NextPage = () => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<main>
-				<h1 className='title'>
-          			Minecraft Server Status
-				</h1>
-
-				<Form noValidate validated={validated} onSubmit={handleSubmit}>
-					<InputGroup>
-						<Form.Control type="text" placeholder='Server IP' required />
-						<Button type="submit">Search</Button>
-					</InputGroup>
-					<Form.Check
-						label="Bedrock Server"
-        			/>
-				</Form>
-			</main>
+			<Search />
 		</div>
 	);
 };

@@ -42,7 +42,7 @@ const handler = async(
 	req: NextApiRequest,
 	res: NextApiResponse<Data>
 ) => {
-    if (!req.query.host) return res.status(422).json({ name: 'UNPROCESSABLE ENTITY', message: 'Invalid query parameter host' });
+    if (!req.query.host || String(req.query.host) === 'undefined') return res.status(422).json({ name: 'UNPROCESSABLE ENTITY', message: 'Invalid query parameter host' });
 
     if (req.query.host.includes(':')) {
         req.query.port = (req.query.host as string).split(':')[1];
