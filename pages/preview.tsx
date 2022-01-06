@@ -19,7 +19,7 @@ const Preview: NextPage = () => {
 	return (
 		<div className={`container ${style.container}`}> 
 			<Head>
-                <title>Minecraft Server Status</title>
+				<title>Minecraft Server Status</title>
 				<meta name="description" content="Tool for check minecraft server status." />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
