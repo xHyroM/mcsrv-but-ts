@@ -5,7 +5,7 @@ import { strToBool } from '../../utils/stringToBool';
 
 const options = {
 	timeout: 1000, 
-}
+};
 
 type MCServerResponse = {
     edition: MCServerEdition;
@@ -17,7 +17,7 @@ type MCServerResponse = {
     motd: MCServerMotd;
     favicon: string;
     bedrock?: MCServerBedrock;
-	query: util.FullQueryResponse | void | {};
+	query: util.FullQueryResponse;
 }
 
 type MCServerEdition = 'BEDROCK' | 'JAVA'
@@ -56,9 +56,9 @@ const handler = async(
 	}
 
 	const status = strToBool(req.query.bedrock as string) ? await util.statusBedrock(req.query.host as string, Number(req.query.port), options).catch(e => e) : await util.status(req.query.host as string, Number(req.query.port)).catch(e => e);
-	const query = strToBool(req.query.bedrock as string) ? {} : await util.queryFull(req.query.host as string, Number(req.query.port), options).catch(e => {});
+	const query = strToBool(req.query.bedrock as string) ? {} : await util.queryFull(req.query.host as string, Number(req.query.port), options).catch(e => e);
 
-	console.log(query)
+	console.log(query);
 
 	if (!status.version) {
 		return res.status(400).json({ name: 'BAD REQUEST', message: status });
@@ -84,7 +84,7 @@ const handler = async(
 				gameMode: status.gameMode,
 				gameModeId: status.gameModeID
 			},
-			query: query
+			query: query as util.FullQueryResponse
 		}
 	});
 };
