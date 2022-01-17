@@ -27,64 +27,67 @@ const Preview: NextPage = () => {
 			<Search value={`${host || ''}`} bedrock={`${strToBool(bedrock as string)}`} />
 
 			{ (!data || data.name !== 'BAD REQUEST') ?
-				<Table responsive>
-					<tbody>
-						<tr>
-							<td>
-								<b>
-                                    IP
-								</b>
-							</td>
+				<>
+					<img src={data ? data.message.favicon : ''} alt='server icon'></img>
+					<Table responsive>
+						<tbody>
+							<tr>
+								<td>
+									<b>
+										IP
+									</b>
+								</td>
 
-							<td>{ data ? `${data.message.ip}` : 'Loading' }</td>
-						</tr>
-						<tr>
-							<td>
-								<b>
-                                    Edition
-								</b>
-							</td>
+								<td>{ data ? `${data.message.ip}` : 'Loading' }</td>
+							</tr>
+							<tr>
+								<td>
+									<b>
+										Edition
+									</b>
+								</td>
 
-							<td>{ data ? `${data.message.edition ? formatString(data.message.edition) : ''}` : 'Loading' }</td>
-						</tr>
-						<tr>
-							<td>
-								<b>
-                                    Players
-								</b>
-							</td>
+								<td>{ data ? `${data.message.edition ? formatString(data.message.edition) : ''}` : 'Loading' }</td>
+							</tr>
+							<tr>
+								<td>
+									<b>
+										Players
+									</b>
+								</td>
 
-							<td>{ data ? `${data.message.playersOnline}/${data.message.playersMax}` : 'Loading' }</td>
-						</tr>
-						<tr>
-							<td>
-								<b>
-                                    Version Name
-								</b>
-							</td>
+								<td>{ data ? `${data.message.playersOnline}/${data.message.playersMax}` : 'Loading' }</td>
+							</tr>
+							<tr>
+								<td>
+									<b>
+										Version Name
+									</b>
+								</td>
 
-							<td>{ data ? `${data.message.versionName}` : 'Loading' }</td>
-						</tr>
-						<tr>
-							<td>
-								<b>
-                                    Version Protocol
-								</b>
-							</td>
+								<td>{ data ? `${data.message.versionName}` : 'Loading' }</td>
+							</tr>
+							<tr>
+								<td>
+									<b>
+										Version Protocol
+									</b>
+								</td>
 
-							<td>{ data ? `${data.message.versionProtocol}` : 'Loading' }</td>
-						</tr>
-						<tr>
-							<td>
-								<b>
-                                    Motd
-								</b>
-							</td>
+								<td>{ data ? `${data.message.versionProtocol}` : 'Loading' }</td>
+							</tr>
+							<tr>
+								<td>
+									<b>
+										Motd
+									</b>
+								</td>
 
-							<td style={{ whiteSpace: 'pre-line' }}>{ data ? `${data.message.motd ? data.message.motd.clean : ''}` : 'Loading' }</td>
-						</tr>
-					</tbody>
-				</Table>
+								<td style={{ whiteSpace: 'pre-line' }}>{ data ? `${data.message.motd ? data.message.motd.clean : ''}` : 'Loading' }</td>
+							</tr>
+						</tbody>
+					</Table>
+				</>
 				: 
 				<b>Server is offline.</b>
 			}
